@@ -22,13 +22,13 @@ import java.lang.reflect.Array;
 
 public class MainActivity extends Activity {
 
+    EditText aux;
     public Spinner miSpinner;
     private Pizza[] pizzas=new Pizza[]{
             new Pizza("MARGARITA", "jamon/tomate", 13, R.drawable.pizza1),
             new Pizza("3 QUESOS", "queso1/queso2", 15, R.drawable.pizza2),
             new Pizza("MARGARITA", "carne/tomate", 17, R.drawable.pizza3)
     };
-
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -38,14 +38,14 @@ public class MainActivity extends Activity {
 
         final EditText unidades=(EditText)findViewById(R.id.editText);
 
-        int aux=R.id.editText2;
+        aux =(EditText) findViewById(R.id.editText2);
         miSpinner=(Spinner) findViewById(R.id.spinner);
         AdaptadorPizza adaptador=new AdaptadorPizza(this);
         miSpinner.setAdapter(adaptador);
         miSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                aux=pizzas[position].getPrecio();
+                aux.setText((int)pizzas[position].getPrecio());
             }
         });
 

@@ -27,10 +27,11 @@ public class Pizza {
         return ingrediente;
     }
 
-    public Double getPrecio()
+    public double getPrecio()
     {
         return precio;
     }
+
     public int getImagen()
     {
         return imagen;
