@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EjemploContentProvider</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello">Hola mundo</string>
+</resources>
