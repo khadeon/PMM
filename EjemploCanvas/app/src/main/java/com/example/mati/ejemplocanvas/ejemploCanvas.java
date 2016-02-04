@@ -20,15 +20,14 @@ import android.widget.ImageView;
 
 public class ejemploCanvas extends AppCompatActivity {
 
-    private BitmapDrawable miImagen;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new EjemploView(this));
+        setContentView(R.layout.activity_ejemplo_canvas);
     }
 
-    public class EjemploView extends View {
+    /*public class EjemploView extends View {
         public EjemploView(Context contexto) {
             super(contexto);
             Resources res = contexto.getResources();
@@ -52,5 +51,5 @@ public class ejemploCanvas extends AppCompatActivity {
 
 
         }
-    }
+    }*/
 }

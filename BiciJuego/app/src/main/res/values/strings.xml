@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BiciJuego</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="TextoAcercaDe" > Informacion </string>
+    <string name="preferencias" > Opciones </string>
+    <string name="consultar" > Consulta </string>
+</resources>
