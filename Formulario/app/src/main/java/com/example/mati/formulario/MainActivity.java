@@ -1,7 +1,10 @@
 package com.example.mati.formulario;
 
 import android.app.Activity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +53,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new AlertDialog.Builder(this)
+
+            .setTitle("Identificación")
+                .setMessage("Por favor elija si quiere entrar con anonimo o como usuarion registrado")
+                .setPositiveButton("Registrarse", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intento2 = new Intent(MainActivity.this, Registro.class);
+                        startActivity(intento2);
+                    }
+                })
+                .setNegativeButton("Anonimo", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "Iniciado como Anonimo", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
 
         EdLimitada=(CheckBox)findViewById(R.id.EdLimitada);
         EdEspecial=(CheckBox)findViewById(R.id.EdEspecial);
@@ -137,17 +161,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
-    public boolean onCreateOptions(MenuItem menu)
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menu)
     {
         switch(menu.getItemId()){
             case R.id.menu1:
-                Intent activityIntent = new Intent(this, Dibujo.class);
+                Intent activityIntent = new Intent(this, Dibujar.class);
                 startActivity(activityIntent);
                 return true;
             case R.id.menu2:
-                Toast.makeText(getApplicationContext(),"Israel Benavente Lopez", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Version 1.0 \n Copyright sin aplicar \n Israel Benavente Lopez", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(menu);

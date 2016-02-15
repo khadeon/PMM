@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre"
-        android:id="@+id/textView"
+        android:id="@+id/nombreNuevo"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ingresaNom"
         android:layout_toEndOf="@+id/ingresaNom" />
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ingresaNom"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/nombreNuevo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -23,16 +23,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Telefono"
-        android:id="@+id/textView2"
+        android:id="@+id/tlfNuevo"
         android:layout_below="@+id/ingresaNom"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignRight="@+id/nombreNuevo"
+        android:layout_alignEnd="@+id/nombreNuevo" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ingresaTlf"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/tlfNuevo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ok"
-        android:id="@+id/button"
+        android:id="@+id/buttonOk"
         android:layout_below="@+id/ingresaTlf"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -49,8 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
-        android:id="@+id/button2"
-        android:layout_alignTop="@+id/button"
+        android:id="@+id/buttonCancel"
+        android:layout_alignTop="@+id/buttonOk"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

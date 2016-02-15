@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.AttributeSet;
 import android.view.View;
 
 /**
@@ -15,11 +16,10 @@ import android.view.View;
 
 public class EjemploView extends View {
     private BitmapDrawable miImagen;
-    public EjemploView(Context contexto) {
-        super(contexto);
+    public EjemploView(Context contexto,AttributeSet attr) {
+        super(contexto, attr);
         Resources res = contexto.getResources();
         miImagen = (BitmapDrawable) res.getDrawable(R.drawable.logo_cefire);
-
 
     }
     @Override
