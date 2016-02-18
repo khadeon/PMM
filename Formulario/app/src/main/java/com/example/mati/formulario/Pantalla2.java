@@ -1,12 +1,20 @@
 package com.example.mati.formulario;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Pantalla2 extends AppCompatActivity {
 
+    SQLiteHelper helper;
+    SQLiteDatabase db;
+    Destino destino;
+    Usuarios usuario;
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -42,6 +50,35 @@ public class Pantalla2 extends AppCompatActivity {
         precioFinal.setText(String.valueOf("Precio final: "+cadPrecioFinal));
         importancia.setText("Clase de envio: "+cadImportancia);
         imagen.setImageResource(cadImagen);
+
+        Button cargar = (Button)findViewById(R.id.Registrar);
+        destino = new Destino(cadZona, cadContinente, ""+cadPrecioFinal, cadImagen);
+        cargar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                helper = new SQLiteHelper(Pantalla2.this, "DBClientes", null, 1);
+                db = helper.getWritableDatabase();
+                helper.InsertarDatosDestino(db, Pantalla2.this, destino);
+
+
+            }
+        });
+        Button ver = (Button)findViewById(R.id.Visualizar);
+        ver.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Pantalla3.class);
+                startActivity(intent);
+            }
+        });
+
+        if(usuario.equals("Anonimo")){
+            cargar.setVisibility(View.INVISIBLE);
+            ver.setVisibility(View.INVISIBLE);
+        }
+
     }
 
 
