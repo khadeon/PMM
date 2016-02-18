@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity" >
     <item android:id="@+id/menu1" android:title="Dibujo" android:text="Dibujo" />
     <item android:id="@+id/menu2" android:title="Informacion" android:text="Informacion "></item>
-
+    <item android:id="@+id/menu3" android:title="Registrate" android:text="Registrarte"></item>
+    <item android:id="@+id/menu4" android:title="Cierre de Sesion" android:text="Cerrar Sesion"></item>
 
 </menu>

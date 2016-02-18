@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     String Importancia;
     String Envio;
 
+    TextView nombreRegistrado = null;
+
     private Destino[] itemSpinner=new Destino[]{
             new Destino("A","Asia-Oceania","30",R.drawable.asia),
             new Destino("B","America-Africa","20",R.drawable.america),
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        nombreRegistrado=(TextView)findViewById(R.id.usuarioP1);
 
         new AlertDialog.Builder(this)
 
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(MainActivity.this, "Iniciado como Anonimo", Toast.LENGTH_SHORT).show();
+                        nombreRegistrado.setText("Anonimo");
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -150,9 +155,10 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putDouble("Precio", price);
                     bundle.putDouble("PrecioPlus", precioPlus);
                     bundle.putInt("Cantidad", canti);
-                    bundle.putDouble("Precio final", price+precioPlus);
+                    bundle.putDouble("Precio final", price + precioPlus);
                     bundle.putString("Clase de envio", Importancia);
                     bundle.putInt("Imagen", image);
+                    bundle.putString("Usuario", nombreRegistrado.getText().toString());
 
                     intent.putExtras(bundle);
 
@@ -174,11 +180,36 @@ public class MainActivity extends AppCompatActivity {
     {
         switch(menu.getItemId()){
             case R.id.menu1:
-                Intent activityIntent = new Intent(this, Dibujar.class);
-                startActivity(activityIntent);
+                Intent intent = new Intent(this, Dibujar.class);
+                startActivity(intent);
                 return true;
             case R.id.menu2:
                 Toast.makeText(getApplicationContext(),"Version 1.0 \n Copyright sin aplicar \n Israel Benavente Lopez", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu3:
+                new AlertDialog.Builder(this)
+
+                        .setTitle("Identificación")
+                        .setMessage("Por favor elija si quiere entrar con anonimo o como usuarion registrado")
+                        .setPositiveButton("Registrarse", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intento2 = new Intent(MainActivity.this, Registro.class);
+                                startActivity(intento2);
+                            }
+                        })
+                        .setNegativeButton("Anonimo", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this, "Iniciado como Anonimo", Toast.LENGTH_SHORT).show();
+                                nombreRegistrado.setText("Anonimo");
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                return true;
+            case R.id.menu4:
+                nombreRegistrado.setText("Anonimo");
                 return true;
             default:
                 return super.onOptionsItemSelected(menu);
