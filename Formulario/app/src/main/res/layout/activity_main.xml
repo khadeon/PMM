@@ -43,7 +43,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/usuarioP1"
-            android:layout_weight="0.58" />
+            android:layout_weight="0.58"
+            android:textColor="#ff0911" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

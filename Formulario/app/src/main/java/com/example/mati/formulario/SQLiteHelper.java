@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 
 public class SQLiteHelper extends SQLiteOpenHelper{
-    String comandoTablaDestino = "CREATE TABLE Destino if not EXISTS (id INTEGER PRIMARY KEY, zona TEXT,continente TEXT, imagen INTEGER, precio TEXT )";
-    String comandoTablaUsuario = "CREATE TABLE Usuarios if not EXISTS (id INTEGER PRIMARY KEY, usuario TEXT, contraseña TEXT)";
+    String comandoTablaDestino = "CREATE TABLE Destino (id INTEGER PRIMARY KEY, zona TEXT,continente TEXT, imagen INTEGER, precio TEXT )";
+    String comandoTablaUsuario = "CREATE TABLE Usuarios (id INTEGER PRIMARY KEY, usuario TEXT, contraseña TEXT)";
     String comandoListarDestinos = "SELECT * FROM Destino";
     String comandoListarUsuarios = "SELECT * FROM Usuarios";
 
@@ -90,6 +90,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(comandoTablaDestino);
         db.execSQL(comandoTablaUsuario);
     }

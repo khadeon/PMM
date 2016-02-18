@@ -58,27 +58,37 @@ public class MainActivity extends AppCompatActivity {
 
         nombreRegistrado=(TextView)findViewById(R.id.usuarioP1);
 
-        new AlertDialog.Builder(this)
 
-            .setTitle("Identificación")
-                .setMessage("Por favor elija si quiere entrar con anonimo o como usuarion registrado")
-                .setPositiveButton("Registrarse", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intento2 = new Intent(MainActivity.this, Registro.class);
-                        startActivity(intento2);
-                    }
-                })
-                .setNegativeButton("Anonimo", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, "Iniciado como Anonimo", Toast.LENGTH_SHORT).show();
-                        nombreRegistrado.setText("Anonimo");
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+        Bundle bundle;
+        if(( bundle = getIntent().getExtras())==null) {
+            new AlertDialog.Builder(this)
 
+                    .setTitle("Identificación")
+                    .setMessage("Por favor elija si quiere entrar con anonimo o como usuarion registrado")
+                    .setPositiveButton("Registrarse", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intento2 = new Intent(MainActivity.this, Registro.class);
+                            startActivity(intento2);
+                        }
+                    })
+                    .setNegativeButton("Anonimo", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(MainActivity.this, "Iniciado como Anonimo", Toast.LENGTH_SHORT).show();
+                            nombreRegistrado.setText("Anonimo");
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+        }
+
+        else{
+            bundle = getIntent().getExtras();
+            String nombreUsuario = bundle.getString("Usuario");
+            nombreRegistrado.setText(nombreUsuario);
+        }
 
         EdLimitada=(CheckBox)findViewById(R.id.EdLimitada);
         EdEspecial=(CheckBox)findViewById(R.id.EdEspecial);
