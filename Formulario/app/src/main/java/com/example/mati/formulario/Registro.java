@@ -101,14 +101,17 @@ public class Registro extends AppCompatActivity
             }
         });
         //Trozo de codigo en pruebas
-        /*Bundle bundle = getIntent().getExtras();
-        String comprueba=bundle.getString("Usuario");
+        Bundle bundle;
+
+if((bundle=getIntent().getExtras())!=null){
+    String comprueba=bundle.getString("Usuario");
 
         if(comprueba.equals("Anonimo")==false)
         {
             error2.setText(error2.getText().toString()+ " como " +comprueba);
             botonAcceder.setVisibility(View.INVISIBLE);
             error2.setVisibility(View.VISIBLE);
-        }*/
+        }
+    }
     }
 }

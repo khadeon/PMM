@@ -1,5 +1,6 @@
 package com.example.mati.formulario;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,12 +15,13 @@ public class Pantalla2 extends AppCompatActivity {
     SQLiteHelper helper;
     SQLiteDatabase db;
     Destino destino;
-    Usuarios usuario;
+    Context contexto;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla2);
-
+        contexto = this;
         MainActivity objeto=new MainActivity();
         objeto.precioPlus=0.0;
 
@@ -32,6 +34,8 @@ public class Pantalla2 extends AppCompatActivity {
         final TextView importancia=(TextView)findViewById(R.id.importancia2);
         final ImageView imagen=(ImageView)findViewById(R.id.imagen2);
 
+        final TextView viewUsuario = (TextView)findViewById(R.id.tusuario);
+
         Bundle bundle=getIntent().getExtras();
         String cadZona=bundle.getString("Zona");
         String cadContinente=bundle.getString("Continente");
@@ -42,14 +46,18 @@ public class Pantalla2 extends AppCompatActivity {
         String cadImportancia=bundle.getString("Clase de envio");
         int cadImagen=bundle.getInt("Imagen");
 
+        String usuario = bundle.getString("Usuario");
+
         zona.setText("Zona: "+cadZona);
         continente.setText("Continente: "+cadContinente);
         precio.setText(String.valueOf("Precio: "+cadPrecio));
         precioplus.setText(String.valueOf("Precio añadido: "+cadPrecioplus));
-        cantidad.setText(String.valueOf("Cantidad: "+cadCantidad));
-        precioFinal.setText(String.valueOf("Precio final: "+cadPrecioFinal));
-        importancia.setText("Clase de envio: "+cadImportancia);
+        cantidad.setText(String.valueOf("Cantidad: " + cadCantidad));
+        precioFinal.setText(String.valueOf("Precio final: " + cadPrecioFinal));
+        importancia.setText("Clase de envio: " + cadImportancia);
         imagen.setImageResource(cadImagen);
+
+        viewUsuario.setText(usuario);
 
         Button cargar = (Button)findViewById(R.id.Registrar);
         destino = new Destino(cadZona, cadContinente, ""+cadPrecioFinal, cadImagen);
@@ -57,9 +65,9 @@ public class Pantalla2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                helper = new SQLiteHelper(Pantalla2.this, "DBClientes", null, 1);
+                helper = new SQLiteHelper(Pantalla2.this, "DBUsuarios", null, 1);
                 db = helper.getWritableDatabase();
-                helper.InsertarDatosDestino(db, Pantalla2.this, destino);
+                helper.InsertarDatosDestino(db, contexto, destino);
 
 
             }

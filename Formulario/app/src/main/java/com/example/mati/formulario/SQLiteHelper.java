@@ -22,8 +22,11 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     {
         if(db != null)
         {
-            db.execSQL("INSERT INTO Destino (zona, continente, imagen, precio) " +
-                    "VALUES ('" + destino.getZona() + "', '"+destino.getContinente()+"', '"+destino.getImagen()+"', '"+destino.getPrecio()+"')");
+            Log.d("datos", "" + destino.getZona() + destino.getContinente() + destino.getPrecio() + destino.getImagen());
+            Toast.makeText(contexto, ""+destino.getZona()+destino.getContinente()+destino.getPrecio()+destino.getImagen(), Toast.LENGTH_SHORT).show();
+            String query = "INSERT INTO Destino (zona, continente, imagen, precio) VALUES ('" + destino.getZona() + "', '"+destino.getContinente()+"', '"+destino.getImagen()+"', '"+destino.getPrecio()+"');";
+            Log.d("query",query);
+            db.execSQL(query);
             db.close();
             Log.d("probando", "todo correcto");
 
@@ -52,13 +55,18 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     public Destino[] ListarDestino(SQLiteDatabase db)
     {
         Destino objetoAux;
+
         Cursor cursor = db.rawQuery(comandoListarDestinos, null);
+        Log.d("PRUEBACOLUMNA",String.valueOf(cursor.getColumnCount()));
         cursor.moveToFirst();
+        Log.d("Losgets", cursor.getString(1));
+        Log.d("CURSORPRUEBA",String.valueOf(cursor.getCount()));
+
         Destino[] dest = new Destino[cursor.getCount()];
         int cont = 0;
         do
         {
-            objetoAux = new Destino(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getInt(4));
+            objetoAux = new Destino(cursor.getString(1),cursor.getString(2),cursor.getString(4),cursor.getInt(3));
             dest[cont] = objetoAux;
             cont++;
         }

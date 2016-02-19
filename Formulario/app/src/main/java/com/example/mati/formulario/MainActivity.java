@@ -24,7 +24,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     String zone;
     String continent;
-    Double price;
+    Double price=0.0;
     int image;
 
     Double precioPlus=0.0;
@@ -204,7 +203,10 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Registrarse", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Bundle miBundle=new Bundle();
+                                miBundle.putString("Usuario", nombreRegistrado.getText().toString());
                                 Intent intento2 = new Intent(MainActivity.this, Registro.class);
+                                intento2.putExtras(miBundle);
                                 startActivity(intento2);
                             }
                         })

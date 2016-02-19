@@ -28,6 +28,9 @@ public class Pantalla3 extends Activity{
         ListView listar=(ListView)findViewById(R.id.listado);
         ListAdapter adapter = new ListAdapter(this);
         listar.setAdapter(adapter);
+
+        listar.setLongClickable(true);
+        registerForContextMenu(listar);
     }
 
     public Destino[] listarDatos(Context context)
@@ -42,7 +45,7 @@ public class Pantalla3 extends Activity{
         Activity main;
         public ListAdapter(Activity activity)
         {
-            super(activity,R.layout.spinner_item, destino);
+            super(activity,R.layout.items, destino);
             main=activity;
         }
 
@@ -50,21 +53,21 @@ public class Pantalla3 extends Activity{
         public View getView(int posicion, View convertView, ViewGroup parent)
         {
             LayoutInflater inflate = getLayoutInflater();
-            convertView=inflate.inflate(R.layout.spinner_item, null);
-
-            TextView Zone=(TextView) convertView.findViewById(R.id.zona3);
-            Zone.setText(destino[posicion].getZona());
-            TextView Continent=(TextView)convertView.findViewById(R.id.continente3);
-            Continent.setText(destino[posicion].getContinente());
-            ImageView Image=(ImageView)convertView.findViewById(R.id.Imagen3);
-            Image.setImageResource(destino[posicion].getImagen());
-            TextView Prize=(TextView)convertView.findViewById(R.id.precio3);
-            Prize.setText(destino[posicion].getPrecio());
+            convertView=inflate.inflate(R.layout.items, null);
 
             zona=destino[posicion].getZona();
             continente=destino[posicion].getContinente();
-            imagen=destino[posicion].getImagen();
             precio=Double.parseDouble(destino[posicion].getPrecio());
+            imagen=destino[posicion].getImagen();
+
+            TextView Zone=(TextView) convertView.findViewById(R.id.zona3);
+            Zone.setText(zona);
+            TextView Continent=(TextView)convertView.findViewById(R.id.continente3);
+            Continent.setText(continente);
+            TextView Prize=(TextView) convertView.findViewById(R.id.precio3);
+            Prize.setText(String.valueOf(precio));
+            ImageView Image=(ImageView)convertView.findViewById(R.id.Imagen3);
+            Image.setImageResource(imagen);
 
             return convertView;
         }
